@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+<body>
+    <style>
+ .table {
+	flex-basis: 400px;
+	flex-grow: 10;
+	height: 500px;
+	margin: 15px;
+	border-radius: 6px;
+	background-color: #ffffff;
+	position: relative;
+	overflow-y: scroll; 
+	overflow-x: scroll;
+
+}
+table .title{
+	background-color: #eef1f7;
+	border-bottom: 1px solid #dfe4ec;
+	padding: 10px;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	color: #617085;
+	font-weight: 600;
+}
+    </style>
+    <div class="w3-card-4 w3-black" style="width:100%;">
+      <div class="w3-container w3-center ">
+        <img src="{{url_for('static', filename='img/image.png')}}" class="w3-col s1" >
+        <h1>Welcome Admin</h1>
+        <h2 class="text-center"> Faryad Admin Panel  </h2>
+        <div class="w3-bar w3-center">
+          <a href="/signup"><button href="/" class="w3-button w3-">Sign Up A Donor</button></a>
+          <a href="/admin/Donations"><button class="w3-button w3-">View Donations via Faryad</button></a>
+          <a href="/admin/Requests"><button class="w3-button w3-">View Requests via Faryad</button></a>
+          <a href="/admin/Donors"><button class="w3-button w3-">View Donor's List</button></a>          
+          <a href="/admin/Users"><button class="w3-button w3-">View User's List</button></a>
+          <a href="/logout"><button class="w3-button w3-">Logout</button></a>
+        </div>
+        </div>
+    </div>
+  </div>
+<br><br>
+<div class="main">
+    <div class="table">
+        <div class="title"><center><h2>{{ variable }}</h2></center></div>
+        <div class="container ">
+            <div class="row w3-container w3-margin-right">
+                <div class="col-md-4 col-md-offset-4">
+                <center>
+                <table class="w3-table w3-striped w3-margin w3-margin-right w3-margin-left">
+            <tr >
+                {% for k in keys %}
+                <td class="w3-panel w3-border w3-round w3-topbar w3-bottombar w3-border-gray">{{k}} </td>
+                {% endfor %}
+            </tr>
+                <tr>	
+                {% for cl in arr %}
+                    {% for k in keys %}
+                        <td class="w3-panel w3-border w3-round">{{ cl[k] }}</td>
+                        {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        </center></div></div></div>
+
+    </div>
+</div>
+
+</div>

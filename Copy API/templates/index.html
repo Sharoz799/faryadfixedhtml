@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title> Faryaad - Home </title>
+		<link rel="icon" type="image/ico" href="../static/img/lg.png" />
+		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:700, 600,500,400,300' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+		<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/modules/data.js"></script>
+		<script src="{{ url_for('static', filename='main.js') }}"></script>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Requests Accepted',     {{accepts}} ],
+          ['Requests Unanswered',   {{ignored}} ],
+
+        ]);
+
+        var options = {
+          title: 'My Progress Reports'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+	</script>	
+		<style>
+			.ad {
+				position: absolute;
+				width: 300px;
+				height: 250px;
+				border: 1px solid #ddd;
+				left: 50%;
+				transform: translateX(-50%);
+				top: 250px;
+				z-index: 10;
+			}
+			.ad .close {
+				position: absolute;
+				font-family: 'ionicons';
+				width: 20px;
+				height: 20px;
+				color: #fff;
+				background-color: #999;
+				font-size: 20px;
+				left: -20px;
+				top: -1px;
+				display: table-cell;
+				vertical-align: middle;
+				cursor: pointer;
+				text-align: center;
+			}
+		</style>
+		<script type="text/javascript">
+			$(function() {
+				$('.close').click(function() {
+					$('.ad').css('display', 'none');
+				})
+			})
+		</script>
+
+	</head>
+	<body>
+		<div class="header">
+			<div class="logo">
+				<i class="fa fa-tachometer" ></i>
+				<span>Faryad</span>
+				<!-- <img src="../static/img/lg.png" alt="" style="height: 30px; width: 70px;"> -->
+			</div>
+			<a href="#" class="nav-trigger"><span></span></a>
+		</div>
+		<div class="side-nav">
+			<div class="logo">
+				<i class="fa fa-tachometer " style="width: 30px; height: 150px;"></i>
+				<span>Faryad</span>
+				<!-- <img src="../static/img/lg.png" alt="" style="height: 45px; width: 50px;"> -->
+			</div>
+			<nav>
+				<ul>
+					<li>
+						<a href="logout">
+							<span><i class="fa fa-user"></i></span>
+							<span>Log Out</span>
+						</a>
+					</li>
+					<li>
+						<a href="affirmed">
+
+							<span><i class="fa fa-envelope" href='affirmed'></i></span>
+							<span>Accepts</span>
+						</a>
+					</li>
+					<li class="active">
+						<a href="completed">
+							<span><i class="fa fa-check"></i></span>
+							<span>Completed</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span><i class="fa fa-credit-card-alt"></i></span>
+							<span>Datatable</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="main-content">
+			<div class="title">
+				Analytics
+			</div>
+	
+			<div class="main">
+				<div class="widget">
+					<div class="title">New Requests
+					</div>
+					<div id="piechart" style="width: 450px; height: 250px;"></div>
+				</div>	
+				<div class="widget">
+					<div class="title">Recently Accepted</div>
+					<div class="container ">
+					    <div class="row w3-container w3-margin-right">
+					        <div class="col-md-4 col-md-offset-4">
+					        <center>
+					        <table class="w3-table w3-striped w3-margin w3-margin-right w3-margin-left">
+		                <tr >
+	                        <td class="w3-panel w3-border w3-round w3-topbar w3-bottombar w3-border-gray">Name </td>
+	                        <td class="w3-panel w3-border w3-round w3-topbar w3-bottombar w3-border-gray">Address</td>
+	                        <td class="w3-panel w3-border w3-round w3-topbar w3-bottombar w3-border-gray">Status</td>					
+	                        <td class="w3-panel w3-border w3-round w3-topbar w3-bottombar w3-border-gray">Date</td>
+	                     </tr>
+				            <tr>	
+				            {% for i in arr2 %}
+
+
+				               <td class="w3-panel w3-border w3-round">{{ i['Name'] }}</td>
+				               <td class="w3-panel w3-border w3-round">{{ i["Address"]}}</td>
+				               <td class="w3-panel w3-border w3-round">{{ i['status'] }}</td>
+				               <td class="w3-panel w3-border w3-round">{{ i['Date Accepted'].strftime('%d-%B-%Y') }}</td>
+				            </tr>
+				            {% endfor %}
+				        </table>
+				    </center></div></div>
+
+
+
+
+					</div>
+ 
+				</div>
+				
+
+			</div>
+			<div class="main">
+				
+				<div class="table">
+					<div class="title"><center>DataTable</center></div>
+					<div class="container ">
+					    <div class="row w3-container w3-margin-right" >
+					        <div class="col-md-4 col-md-offset-4">
+					        <center>
+					        <table class="w3-table w3-striped w3-margin w3-margin-right w3-margin-left" >
+		                <tr >
+							{% for k in keys %}
+							<td class="w3-panel w3-border w3-round w3-topbar w3-bottombar w3-border-gray">{{k}} </td>
+							{% endfor %}
+							<td class="w3-panel w3-border w3-round w3-topbar w3-bottombar w3-border-gray">Accept Request</td>
+							
+						</tr>
+							<tr>	
+							{% for cl in arr %}
+
+							{% for k in keys %}
+									<td class="w3-panel w3-border w3-round">{{ cl[k] }}</td>
+
+									{% endfor %}
+									<td class="w3-panel w3-border w3-round"><button class="w3-btn w3-green" id="accept" onclick="javascript:changeStatus( '{{ cl['_id']  }}' );">Accept</button></td>
+
+								</tr>
+							{% endfor %}
+				        </table>
+				    </center></div></div></div>
+
+				</div>
+			</div>
+			
+		</div>
+
+
+		<script type="text/javascript">
+			function changeStatus(_id){
+				fetch('/changeStatus/' + _id);
+				location.reload();
+			};
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+<body>
+    <div class="w3-card-4 w3-black" style="width:100%;">
+      <div class="w3-container w3-center ">
+        <img src="{{url_for('static', filename='img/image.png')}}" class="w3-col s1" >
+        <h1>Welcome Admin</h1>
+        <h2 class="text-center"> Faryad Admin Panel  </h2>
+        <div class="w3-bar w3-center">
+          <a href="/signup"><button href="/" class="w3-button w3-">Sign Up A Donor</button></a>
+          <a href="/admin/Donations"><button class="w3-button w3-">View Donations via Faryad</button></a>
+          <a href="/admin/Requests"><button class="w3-button w3-">View Requests via Faryad</button></a>
+          <a href="/admin/Donors"><button class="w3-button w3-">View Donor's List</button></a>          
+          <a href="/admin/Users"><button class="w3-button w3-">View User's List</button></a>
+          <a href="/logout"><button class="w3-button w3-">Logout</button></a>
+        </div>
+        </div>
+    </div>
+  </div>
+<br><br>
+
+          <div class="w3-row">
+           
+        <div class="w3-col s8">
+          
+               <form method = "POST" >  
+                {{ form2.hidden_tag() }}  
+                <div class="w3-container w3-margin w3-panel w3-border w3-round w3-topbar w3-bottombar w3-border-black">
+                  <center><h2> Sign Up Form For Donors </h2> </center>
+                  <br><br>
+
+                <div class="w3-container">
+                  <div class="w3-row">
+                    <div class="w3-col s6">Organization Name   {{  form2.name }} </div> 
+                    <div class="w3-col s6">{{ form2.email.label}} {{   form2.email }} </div> 
+                  </div>
+                <br>
+                <br>
+                <div class="w3-container">
+                  <div class="w3-row">
+                      <div class="w3-col s6">{{ form2.phone.label}}   {{ form2.phone }}   </div>
+                      <div class="w3-col s6">{{ form2.username.label}}    {{ form2.username }}</div>
+                  </div>
+                </div>
+                <br>
+                <br>
+                <div class="w3-container">
+                  <div class="w3-row">
+                      <div class="w3-col s6">  {{ form2.password.label}}   {{ form2.password }}  </div>
+                      <div class="w3-col s6">  {{ form2.confirm.label}}   {{ form2.confirm }}  </div>
+                 <br>
+                 <br>
+               </div>
+             </div>
+             <br>
+                 <br>
+                <div class="w3-container">
+                  <div class="w3-row" >
+                    <div class="w3-col s6">  {{ form2.address.label}}  {{ form2.address }}</div>
+                     <div class="w3-col s6">  {{ form2.city.label}} {{ form2.city }}  </div>
+                   </div>
+
+
+                
+                 </div>
+               </div>
+                 <br><br><br>
+                 <center>                     <div class="w3-col s6"> Package Time(Days)  {{ form2.days }}  </div>
+
+                   <input type="submit" name="Submitform" value="Submitform"></center>
+                 <br><br><br>
+                 
+          </div></div>
+              <div class="w3-container w3-col s3 w3-margin w3-panel w3-border w3-round w3-topbar w3-bottombar w3-border-black">
+                       <center><br><div style="padding: 0;margin: 0; list-style: none;"> <h2>{{ form2.towns.label}}</h2>  {{ form2.towns }}  </div></center>
+
+
+                  
+             </fieldset>  
+          </form>
+
+        </div>
+
+        <script>
+
+
+        </script>
